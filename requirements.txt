@@ -1,0 +1,4 @@
+opencv_python==4.3.0.36
+PyAutoGUI==0.9.50
+numpy==1.19.1
+PyQt5==5.15.1

@@ -9,19 +9,22 @@ Set 4
 
 ### Creating custom composition
 - Open mainwindow.py
-- Edit comp variable in line 12
+- Edit `comp` variable in line 12
 
 Example:
+```python
 comp = {
     "CompName1": ["champname1", "champname2", "champname3"],
     "CompName2": ["champname4", "champname5", "champname6"]
     }
+```
 
-Make sure champion name is written in lower case
+Make sure champion names are written in lower case
 
 ### Game settings
 - Resolution: 1920x1080
 - Window Mode: Borderless
 
 ### Running overlay
-- Run mainwindow.py
+- `pip install -r requirements.txt --user`
+- `python mainwindow.py`

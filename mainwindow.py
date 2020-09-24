@@ -10,10 +10,23 @@ import os
 
 # Edit your comp below (Keep champion names in lower case)
 comps = {
-    "Dusk Cultist": ["evelynn", "pyke", "kalista", "aatrox", "cassiopeia", "jhin", "riven", "zilean"],
-    "Chosen Shades": ["zed", "pyke", "kalista", "evelynn", "aatrox", "jhin", "kayn", "zilean"],
+    "Chosen Brawlers": ["maokai", "tahm kench", "sylas", "vi", "nunu", "ashe", "warwick", "sett"],
+    "Chosen Sharpshooters": ["nidalee", "vayne", "teemo", "jinx", "aatrox", "cassiopeia", "jhin", "sejuani", "zilean"],
+    "Elderwood Brawlers": ["maokai", "lulu", "nunu", "lux", "ashe", "warwick", "ezreal", "sett"],
+    "Chosen Cultists": ["elise", "twisted fate", "pyke", "kalista", "evelynn", "aatrox", "jhin", "zilean"],
+    "Chosen Dusks": ["vayne", "thresh", "aatrox", "cassiopeia", "jhin", "riven", "lillia", "zilean"],
+    "Dusk Cultists": ["elise", "pyke", "kalista", "aatrox", "cassiopeia", "jhin", "riven", "zilean"],
+    "Spirit Vanguards": ["thresh", "yuumi", "aatrox", "ahri", "cassiopeia", "sejuani", "shen", "zilean"],
+    "Moonlight Assassins": ["lissandra", "diana", "pyke", "sylas", "akali", "katarina", "talon"],
+    "Cultist Shades": ["zed", "pyke", "kalista", "evelynn", "aatrox", "jhin", "kayn", "zilean"],
+    "Spirit Shades": ["janna", "teemo", "zed", "evelynn", "kindred", "yuumi", "ahri", "kayn"],
+    "Chosen Duelists": ["fiora", "yasuo", "jax", "kalista", "janna", "shen", "lee sin", "yone"],
     "Chosen Warlords": ["garen", "nidalee", "jarvan", "pyke", "vi", "katarina", "xin zhao", "azir"],
-    "Test": ['lissandra']
+    "Enlightened Assassins": ["fiora", "nami", "janna", "pyke", "irelia", "morgana", "shen", "talon"],
+    "Keeper Sharpshooters": ["nidalee", "vayne", "jarvan", "jinx", "kennen", "jhin", "riven", "azir"],
+    "Dusk Mages": ["hecarim", "lulu", "thresh", "veigar", "yuumi", "cassiopeia", "riven", "lillia"],
+    "Moonlight Hunters": ["lissandra", "aphelios", "sylas", "kindred", "yuumi", "ashe", "cassiopeia", "warwick"],
+    "Divine Vanguards": ["wukong", "garen", "janna", "irelia", "lux", "aatrox", "sejuani", "shen"]
 }
 
 # Storing champion images in champ_cards dictionary
@@ -28,9 +41,6 @@ def crop_ss(selectedComps):
     # https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_template_matching/py_template_matching.html
     # 
     # Taking screenshot and matching champion images from user selected comp to the screenshot
-    # 
-    # Lower threshold variable value if the program gets false negatives
-    # Increase threshold variable value if the program gets false positives
 
     while True:
         try:
@@ -47,7 +57,11 @@ def crop_ss(selectedComps):
         for champ in comps[comp]:
             template = champ_cards[champ]
             res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-            threshold = 0.5
+
+            # Lower threshold variable value if the program gets false negatives
+            # Increase threshold variable value if the program gets false positives
+            threshold = 0.75
+            
             loc = np.where(res >= threshold)
             lst = np.concatenate([lst, loc[1]])
     return lst
@@ -56,7 +70,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.selectedComps = list()
-        self.setWindowTitle('TFT v1.0 by junschoi')
+        self.setWindowTitle('TFT Overlay v1.0 by junschoi')
         self.setGeometry(1600,30,0,0)
         self.setupWidgets()
     
