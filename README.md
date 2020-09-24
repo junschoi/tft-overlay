@@ -4,6 +4,9 @@ Modified version of https://github.com/ufanYavas/LoL-TFT-Champion-Masking.
 
 Instead of text recognition, this TFT overlay uses cv2 image matching method. 
 
+### Current version
+Set 4
+
 ### Creating custom composition
 - Open mainwindow.py
 - Edit comp variable in line 12
@@ -19,3 +22,6 @@ Make sure champion name is written in lower case
 ### Game settings
 - Resolution: 1920x1080
 - Window Mode: Borderless
+
+### Running overlay
+- Run mainwindow.py
